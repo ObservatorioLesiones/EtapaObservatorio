@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-unit">
+	<h1>Lesiones de transito</h1>
+	<p>Observatorio</p>
+	<p>
+		<a class="btn btn-primary btn-large">
+			Ir a Evento
+		</a>
+	</p>
+</div>
+
+{% for blog in blogs %}
+<h2>{{ evento }}<small>{{evento.delegacion}}</small></h2>
+< a class="btn" href="{{ evento.get_absolute_url }}">Ir a evento</a>
+{% endfor %}
+
+{% endblock %}

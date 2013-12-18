@@ -1,0 +1,17 @@
+from django.contrib import admin
+from observatorio.models import evento
+from observatorio.models import persona
+from observatorio.models import vehiculo
+from observatorio.models import Delegacion
+from observatorio.models import Ciudad
+from observatorio.models import Municipio
+
+
+admin.site.register(evento)
+admin.site.register(persona)
+admin.site.register(vehiculo)
+
+admin.site.register(Ciudad)
+admin.site.register(Municipio)
+admin.site.register(Delegacion)
+
