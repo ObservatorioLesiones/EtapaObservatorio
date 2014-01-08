@@ -1,19 +1,40 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="hero-unit">
-	<h1>Lesiones de transito</h1>
-	<p>Observatorio</p>
-	<p>
-		<a class="btn btn-primary btn-large">
-			Ir a Evento
-		</a>
-	</p>
-</div>
-
-{% for blog in blogs %}
-<h2>{{ evento }}<small>{{evento.delegacion}}</small></h2>
-< a class="btn" href="{{ evento.get_absolute_url }}">Ir a evento</a>
-{% endfor %}
-
+{% block menu %}
+<ul class="nav">
+	<li class="active">
+		<a href="./">Inicio</a>
+	</li>
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cosultas<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="./delegacion_c">Delegacion</a></li>
+			<li><a href="">Ciudad</a></li>
+			<li><a href="">Municipio</a></li>
+			<li><a href="">Descripcion Vial</a></li>
+			<li><a href="">Fecha</a></li>
+			<li><a href="">Otro</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="./reportes">Reportes</a>
+	</li>	        
+</ul>
 {% endblock %}
+	{% block content %}
+	<div class="hero-unit">
+		<h1>Lesiones de transito</h1>
+		<p>Observatorio</p>
+		<p>
+			<a class="btn btn-primary btn-large">Introduccion</a>
+		</p>
+	</div>
+
+	{% for evento in eventos %}
+	<h2>{{ evento }}<small>{{evento.fecha_hora}}</small></h2>
+	<a class="btn" href="{{ evento.get_absolute_url }}">Ir a evento</a>
+	{% endfor %}
+
+	{% endblock %}
+
+	

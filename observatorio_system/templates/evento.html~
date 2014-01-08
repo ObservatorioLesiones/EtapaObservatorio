@@ -10,9 +10,9 @@
 		.navbar .container {width: 800px}
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
-	<script>
+	<script type="text/javascript">
 	var map;
 	var marker;
 	
@@ -35,11 +35,9 @@
 	);
 
 	}
-	</script>
-	{% block libs %} {% endblock %}
-    {% bootstrap_javascript_tag %}
+</script>
 </head>
-<body>
+<body onload='initialize()'>
 <div class ="navbar navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container">
@@ -50,8 +48,26 @@
           		</button>
 			<a class="brand" href="/">Observatorio</a>
 			<div class="nav-collapse collapse">
-            		{% block menu %}{% endblock %}
-			<form class="navbar-form pull-right">
+<ul class="nav">
+	<li class="active">
+		<a href="./">Inicio</a>
+	</li>
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cosultas<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="./delegacion_c">Delegacion</a></li>
+			<li><a href="">Ciudad</a></li>
+			<li><a href="">Municipio</a></li>
+			<li><a href="">Descripcion Vial</a></li>
+			<li><a href="">Fecha</a></li>
+			<li><a href="">Otro</a></li>
+		</ul>
+	</li>
+	<li class="">
+		<a href="./reportes">Reportes</a>
+	</li>	        
+</ul>
+<form class="navbar-form pull-right">
 			<input class="span2" type="text" placeholder="Usuario">
 			<input class="span2" type="password" paceholder="Contraseña">
 			<button type="submit" class="btn">Ingresar</button>
@@ -62,8 +78,16 @@
 	
 <div class="container">
 	<div id="content" class="flex">
-	{% block content %}{% endblock %}
-	</div>
+{% block content %}
+	<h1>{{ evento }} <small>{{ evento.fecha_hora }}</small></h1><hr /><hr />
+	<div id=map></div>
+	<hr /><hr />
+	Delegacion: {{evento.delegacion|safe }}<hr />
+	Descripcion Vial: {{evento.descripcion_vial|safe }}<hr />
+	Conductores alcoholizados: {{evento.conductor_alcoholizado|safe }}
+{% endblock %}
+</div>
 </div>
 </body>
 </html>
+

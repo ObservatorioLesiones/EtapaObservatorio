@@ -100,6 +100,8 @@ class jurisdiccion_especial(models.Model):
 class evento(models.Model):
 	num_evento=models.AutoField(primary_key=True)
 	delegacion=models.ForeignKey(Delegacion)
+	ciudad=models.ForeignKey(Ciudad)
+	municipio=models.ForeignKey(Municipio)
 	latitud=models.DecimalField(max_digits=11, decimal_places=7, blank=True, default=0)
 	longitud=models.DecimalField(max_digits=11, decimal_places=7, blank=True, default=0)
 	descripcion_vial=models.ForeignKey(Descripcion_Vial)
@@ -120,12 +122,9 @@ class evento(models.Model):
 	num_muertes=models.IntegerField()
 	dispositivo_control_vial=models.ForeignKey(dispositivo_control_vial)
 	dispositivo_funcionando=models.ForeignKey(dispositivo_funcionando)
-	ciudad=models.ForeignKey(Ciudad)
-	municipio=models.ForeignKey(Municipio)
-	slug = models.SlugField()
 	@models.permalink
 	def get_absolute_url(self):
-		return ('evento',[self.slug])
+		return ('observatorio.views.ver_evento',(str(self.num_evento),),{})
 	
 	def __unicode__(self):
 		return unicode(self.delegacion)

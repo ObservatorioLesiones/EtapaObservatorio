@@ -7,7 +7,9 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'observatorio.views.home', name='home'),
-    # url(r'^observatorio_system/', include('observatorio_system.foo.urls')),
+    url(r'^evento/(\d+)/$', 'observatorio.views.ver_evento',  name='ver_evento'),
+    url(r'^delegacion_c/$', 'observatorio.views.delegacion_c', name='delegacion_c'),
+    # url(r'^observatorio_system/', include('observatorio_system.foo.urls')), 
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

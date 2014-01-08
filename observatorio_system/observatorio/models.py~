@@ -125,10 +125,10 @@ class evento(models.Model):
 	slug = models.SlugField()
 	@models.permalink
 	def get_absolute_url(self):
-		return ('evento',[self.slug])
+		return ('observatorio.views.ver_evento',(str(self.num_evento),),{})
 	
 	def __unicode__(self):
-		return self.delegacion
+		return unicode(self.delegacion)
 
 class marca(models.Model):
 	id=models.AutoField(primary_key=True)
