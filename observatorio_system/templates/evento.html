@@ -82,8 +82,24 @@
 	<hr /><hr />
 	Delegacion: {{evento.delegacion|safe }}<hr />
 	Ciudad: {{evento.ciudad|safe }}<hr />
-	Descripcion Vial: {{evento.descripcion_vial|safe }}<hr />
-	Conductores alcoholizados: {{evento.conductor_alcoholizado|safe }}<hr />
+	<b>Municipio:</b> {{evento.municipio|safe }}<hr />
+        <b>Descripcion Vial:</b> {{evento.descripcion_vial|safe }}<hr />
+        <b>Num. de Carriles:</b> {{evento.num_carriles|safe }}<hr />
+        <b>Limite de velocidad:</b> {{evento.limite_velocidad|safe }}<hr />
+        <b>Condicion Vial:</b> {{evento.condicion_vial|safe }}<hr />
+        <b>Jurisdiccion Especial:</b> {{evento.jurisdiccion_especial|safe }}<hr />
+        <b>Zona en Contruccion:</b> {{evento.zona_construccion|safe }}<hr />
+        <b>Condiciones de luz:</b> {{evento.condicion_luz|safe }}<hr />
+        <b>Condiciones atmosfericas:</b> {{evento.condicion_atmosfera|safe }}<hr />
+        <b>Hora de llamada:</b> {{evento.hra_llamada|safe }}<hr />
+        <b>Hora en la escena:</b> {{evento.hra_escena|safe }}<hr />
+        <b>Hora en el hospital:</b> {{evento.hra_hospital|safe }}<hr />
+        <b>Metodo de transportacion:</b> {{evento.metodo_transportacion|safe }}<hr />
+        <b>Total de conductores alcoholizados:</b> {{evento.conductor_alcoholizado|safe }}<hr />
+        <b>Numero de lesionados:</b> {{evento.num_lesionados|safe }}<hr />
+        <b>Numero de muertes:</b> {{evento.num_muertes|safe }}<hr />
+        <b>Dispositivo de control vial:</b> {{evento.dispositivo_control_vial|safe }}<hr />
+        <b>Dispositivo en funcionamiento:</b> {{evento.dispositivo_funcionando|safe }}<hr />
 	{% endblock %}
 	</div>
 </div>
