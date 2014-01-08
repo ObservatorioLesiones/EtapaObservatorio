@@ -1,4 +1,7 @@
 # Django settings for observatorio_system project.
+import os
+
+CURRENT_PATH=os.path.join(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -67,6 +70,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+   os.path.join(CURRENT_PATH, '../static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -103,7 +107,8 @@ ROOT_URLCONF = 'observatorio_system.urls'
 WSGI_APPLICATION = 'observatorio_system.wsgi.application'
 
 TEMPLATE_DIRS = (
-   '/home/saarahy/Documents/Observatorio/observatorio_system/templates'
+	   os.path.join(CURRENT_PATH, '../templates'),
+   #'/home/saarahy/Documents/Observatorio/observatorio_system/templates'
 )
 
 INSTALLED_APPS = (
