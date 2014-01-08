@@ -12,10 +12,20 @@ def ver_evento(request, num_evento):
 
 def delegacion_c(request):
 	query = request.GET.get('q', '')
-	item  = evento.objects.all()
+	item  = Delegacion.objects.all()
 	if query:
 		qset = (Q(delegacion__nombre_d__icontains=query))
 		results = evento.objects.filter(qset).distinct()
 	else:
 		results=[]
 	return TemplateResponse(request,"delegacion_c.html", {"results":results,"query":query, 'item':item })
+
+def ciudad_c(request):
+	query = request.GET.get('q', '')
+	item  = Ciudad.objects.all()
+	if query:
+		qset = (Q(ciudad__nombre_ciudad__icontains=query))
+		results = evento.objects.filter(qset).distinct()
+	else:
+		results=[]
+	return TemplateResponse(request,"ciudad_c.html", {"results":results,"query":query, 'item':item })

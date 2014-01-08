@@ -13,7 +13,7 @@
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cosultas<b class="caret"></b></a>
 		<ul class="dropdown-menu">
 			<li><a href="./delegacion_c">Delegacion</a></li>
-			<li><a href="">Ciudad</a></li>
+			<li><a href="./ciudad_c">Ciudad</a></li>
 			<li><a href="">Municipio</a></li>
 			<li><a href="">Descripcion Vial</a></li>
 			<li><a href="">Fecha</a></li>
@@ -33,8 +33,8 @@
 		   <!-- <input type="text" name="q" value="{{ query|escape }}">-->
 		    
 			<select name="q">
-			{% for Delegacion in item %}
-			    <option value="{{ Delegacion.nombre_d }}">{{ Delegacion.nombre_d }}</option>
+			{% for Ciudad in item %}
+			    <option value="{{ Ciudad.nombre_ciudad }}">{{ Ciudad.nombre_ciudad }}</option>
 			{% endfor %}
 			</select>
 			<input type="submit" value="Buscar">
@@ -48,8 +48,8 @@
 			<table class="table table-hover">
 			<thead> 
 			    <tr class="sucess"> 
-			    <th>Delegacion</th>
 			    <th>Ciudad</th>
+			    <th>Delegacion</th>
 			    <th>Municipio</th>
 			    <th>Descripcion Vial</th>
 			    <th>Jurisdiccion</th>
@@ -60,7 +60,7 @@
 			
 			<tbody>
 			<td><li>{{ evento|escape }}</li></td>
-				<td>{{ evento.ciudad }}</td>
+				<td>{{ evento.delegacion }}</td>
 				<td>{{ evento.municipio }}</td>
 				<td>{{ evento.descripcion_vial }}</td>
 				<td>{{ evento.jurisdiccion_especial }}</td>

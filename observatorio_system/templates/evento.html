@@ -13,6 +13,8 @@
 	</style>
 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	{% bootstrap_javascript_tag %}
 	<script>
 	var map;
 	var marker;
@@ -39,6 +41,7 @@
 
 	}
 	</script>
+
 </head>
 <body onload='initialize()'>
 	<div class ="navbar navbar-inverse">
@@ -55,9 +58,17 @@
 			        <li class="active">
 			             <a href="./">Inicio</a>
 			        </li>
-			        <li class="">
-			             <a href="./consulta">Consultas</a>
-			        </li>
+			        <li class="dropdown">
+					<a href="." class="dropdown-toggle" data-toggle="dropdown">Cosultas<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="./delegacion_c">Delegacion</a></li>
+						<li><a href="./ciudad_c">Ciudad</a></li>
+						<li><a href="">Municipio</a></li>
+						<li><a href="">Descripcion Vial</a></li>
+						<li><a href="">Fecha</a></li>
+						<li><a href="">Otro</a></li>
+					</ul>
+				</li>
 			        <li class="">
 			             <a href="./reportes">Reportes</a>
 			        </li>
@@ -80,9 +91,8 @@
 	<h1>{{ evento }} <small>{{ evento.fecha_hora }}</small></h1><hr /><hr />
 	<div id=map></div>
 	<hr /><hr />
-<<<<<<< HEAD
-	Delegacion: {{evento.delegacion|safe }}<hr />
-	Ciudad: {{evento.ciudad|safe }}<hr />
+	<b>Delegacion: </b>{{evento.delegacion|safe }}<hr />
+	<b>Ciudad: </b>{{evento.ciudad|safe }}<hr />
 	<b>Municipio:</b> {{evento.municipio|safe }}<hr />
         <b>Descripcion Vial:</b> {{evento.descripcion_vial|safe }}<hr />
         <b>Num. de Carriles:</b> {{evento.num_carriles|safe }}<hr />
@@ -101,28 +111,6 @@
         <b>Numero de muertes:</b> {{evento.num_muertes|safe }}<hr />
         <b>Dispositivo de control vial:</b> {{evento.dispositivo_control_vial|safe }}<hr />
         <b>Dispositivo en funcionamiento:</b> {{evento.dispositivo_funcionando|safe }}<hr />
-=======
-	<b>Delegacion:</b> {{evento.delegacion|safe }}<hr />
-	<b>Ciudad:</b> {{evento.ciudad|safe }}<hr />
-	<b>Municipio:</b> {{evento.municipio|safe }}<hr />
-	<b>Descripcion Vial:</b> {{evento.descripcion_vial|safe }}<hr />
-	<b>Num. de Carriles:</b> {{evento.num_carriles|safe }}<hr />
-	<b>Limite de velocidad:</b> {{evento.limite_velocidad|safe }}<hr />
-	<b>Condicion Vial:</b> {{evento.condicion_vial|safe }}<hr />
-	<b>Jurisdiccion Especial:</b> {{evento.jurisdiccion_especial|safe }}<hr />
-	<b>Zona en Contruccion:</b> {{evento.zona_construccion|safe }}<hr />
-	<b>Condiciones de luz:</b> {{evento.condicion_luz|safe }}<hr />
-	<b>Condiciones atmosfericas:</b> {{evento.condicion_atmosfera|safe }}<hr />
-	<b>Hora de llamada:</b> {{evento.hra_llamada|safe }}<hr />
-	<b>Hora en la escena:</b> {{evento.hra_escena|safe }}<hr />
-	<b>Hora en el hospital:</b> {{evento.hra_hospital|safe }}<hr />
-	<b>Metodo de transportacion:</b> {{evento.metodo_transportacion|safe }}<hr />
-	<b>Total de conductores alcoholizados:</b> {{evento.conductor_alcoholizado|safe }}<hr />
-	<b>Numero de lesionados:</b> {{evento.num_lesionados|safe }}<hr />
-	<b>Numero de muertes:</b> {{evento.num_muertes|safe }}<hr />
-	<b>Dispositivo de control vial:</b> {{evento.dispositivo_control_vial|safe }}<hr />
-	<b>Dispositivo en funcionamiento:</b> {{evento.dispositivo_funcionando|safe }}<hr />
->>>>>>> saarahy
 	{% endblock %}
 	</div>
 </div>

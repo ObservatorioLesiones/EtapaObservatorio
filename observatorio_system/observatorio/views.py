@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.template.response import TemplateResponse
 from observatorio.models import evento
 from observatorio.models import Delegacion
+from observatorio.models import Ciudad
 
 def home(request):
 	return TemplateResponse(request,"home.html",{'eventos':evento.objects.all()})
@@ -19,3 +20,13 @@ def delegacion_c(request):
 	else:
 		results=[]
 	return TemplateResponse(request,"delegacion_c.html", {"results":results,"query":query, 'item':item })
+
+def ciudad_c(request):
+	query = request.GET.get('q', '')
+	item  = Ciudad.objects.all()
+	if query:
+		qset = (Q(ciudad__nombre_ciudad__icontains=query))
+		results = evento.objects.filter(qset).distinct()
+	else:
+		results=[]
+	return TemplateResponse(request,"ciudad_c.html", {"results":results,"query":query, 'item':item })

@@ -9,35 +9,11 @@
 		.container {width:800px}
 		.navbar .container {width: 800px}
 	</style>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
-	<script>
-	var map;
-	var marker;
-	
-	function initialize() {
-	    map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 9,
-		center: new google.maps.LatLng(32.477329,-117.089767),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	    });
-
-	new google.maps.Marker(
-	{
-		position:new google.maps.LatLng({{evento.latitud}}, {{evento.longitud}}), 
-		map:map,
-		title: "hola mundo",
-		icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png',
-		cursor: 'default',
-		draggable:false
-	}
-	);
-
-	}
-	</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+{% bootstrap_javascript_tag %}
 	{% block libs %} {% endblock %}
-    {% bootstrap_javascript_tag %}
 </head>
 <body>
 <div class ="navbar navbar-inverse">
