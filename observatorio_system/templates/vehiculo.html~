@@ -85,29 +85,18 @@
 <div class="container">
 	<div id="content" class="flex">
 	{% block content %}
-	<h1>{{ evento.delegacion }} <small>{{ evento.fecha_hora }}</small></h1><hr /><hr />
-	<div id=map></div>
+	<hr />
+	<h1>Vehiculo: {{ item }} ||<small>Evento: {{item.num_evento}}</small></h1>
 	<hr /><hr />
-	<b>Delegacion: </b>{{evento.delegacion|safe }}<hr />
-	<b>Ciudad: </b>{{evento.ciudad|safe }}<hr />
-	<b>Municipio:</b> {{evento.municipio|safe }}<hr />
-        <b>Descripcion Vial:</b> {{evento.descripcion_vial|safe }}<hr />
-        <b>Num. de Carriles:</b> {{evento.num_carriles|safe }}<hr />
-        <b>Limite de velocidad:</b> {{evento.limite_velocidad|safe }}<hr />
-        <b>Condicion Vial:</b> {{evento.condicion_vial|safe }}<hr />
-        <b>Jurisdiccion Especial:</b> {{evento.jurisdiccion_especial|safe }}<hr />
-        <b>Zona en Contruccion:</b> {{evento.zona_construccion|safe }}<hr />
-        <b>Condiciones de luz:</b> {{evento.condicion_luz|safe }}<hr />
-        <b>Condiciones atmosfericas:</b> {{evento.condicion_atmosfera|safe }}<hr />
-        <b>Hora de llamada:</b> {{evento.hra_llamada|safe }}<hr />
-        <b>Hora en la escena:</b> {{evento.hra_escena|safe }}<hr />
-        <b>Hora en el hospital:</b> {{evento.hra_hospital|safe }}<hr />
-        <b>Metodo de transportacion:</b> {{evento.metodo_transportacion|safe }}<hr />
-        <b>Total de conductores alcoholizados:</b> {{evento.conductor_alcoholizado|safe }}<hr />
-        <b>Numero de lesionados:</b> {{evento.num_lesionados|safe }}<hr />
-        <b>Numero de muertes:</b> {{evento.num_muertes|safe }}<hr />
-        <b>Dispositivo de control vial:</b> {{evento.dispositivo_control_vial|safe }}<hr />
-        <b>Dispositivo en funcionamiento:</b> {{evento.dispositivo_funcionando|safe }}<hr />
+	<b>Num. de ocupantes: </b>{{item.num_ocupantes|safe }}<hr />
+	<b>Modelo: </b>{{item.modelo|safe }}<hr />
+	<b>Marca:</b> {{item.marca|safe }}<hr />
+        <b>Año:</b> {{item.ano|safe }}<hr />
+        <b>VIN:</b> {{item.vin|safe }}<hr />
+        <b>Num. de muertes:</b> {{item.num_muertos|safe }}<hr />
+        <b>Conductor alcoholizado:</b> {{item.conductor_alcoholizado|safe }}<hr />
+        <b>Num. de lesionados:</b> {{item.num_lesionados|safe }}<hr />
+	
 	{% endblock %}
 	</div>
 </div>

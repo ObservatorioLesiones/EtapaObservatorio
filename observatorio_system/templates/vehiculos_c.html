@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
 	<title>Evento</title>
 	<meta charset="utf-8"/>
@@ -9,7 +9,7 @@
 	<style type="text/css" media="screen">
 		.container {width:800px}
 		.navbar .container {width: 800px}
-		#map {width: 500px; height: 300px}
+		#map {width: 800px; height: 300px}
 	</style>
 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
@@ -17,34 +17,41 @@
 	{% bootstrap_javascript_tag %}
 	<script>
 	var map;
-	var marker;
+	
 	
 	function initialize() {
 	    map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 9,
+		zoom: 11,
 		center: new google.maps.LatLng(32.477329,-117.089767),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	    });
-	
-	
+		
+	{% for evento in results %}
+	 var point = new google.maps.LatLng({{evento.latitud}},{{evento.longitud}});
+	 var myWindowOptions = { content:{{evento.latitud}}+","+{{evento.longitud}}};
+		var contentString = {{evento.latitud}}+","+{{evento.longitud}};
+	 var marker = new google.maps.Marker(
+		{
+			position:point, 
+			map:map,
+			icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png',
+			cursor: 'default',
+			draggable:false,
+			animation: google.maps.Animation.DROP,
+			html: contentString 
+		}
+		);
 
-	new google.maps.Marker(
-	{
-		position:new google.maps.LatLng({{evento.latitud}}, {{evento.longitud}}), 
-		map:map,
-		title: "hola mundo",
-		icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png',
-		cursor: 'default',
-		draggable:false
-	}
-	);
+         var myInfoWindow = new google.maps.InfoWindow(myWindowOptions);
 
+         google.maps.event.addListener(marker, 'click', function() {myInfoWindow.setContent(this.html);myInfoWindow.open(map,this); });
+	
+	{% endfor %}
 	}
 	</script>
-
 </head>
 <body onload='initialize()'>
-	<div class ="navbar navbar-inverse">
+<div class ="navbar navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container">
 			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -84,34 +91,20 @@
 
 <div class="container">
 	<div id="content" class="flex">
+
 	{% block content %}
-	<h1>{{ evento.delegacion }} <small>{{ evento.fecha_hora }}</small></h1><hr /><hr />
-	<div id=map></div>
-	<hr /><hr />
-	<b>Delegacion: </b>{{evento.delegacion|safe }}<hr />
-	<b>Ciudad: </b>{{evento.ciudad|safe }}<hr />
-	<b>Municipio:</b> {{evento.municipio|safe }}<hr />
-        <b>Descripcion Vial:</b> {{evento.descripcion_vial|safe }}<hr />
-        <b>Num. de Carriles:</b> {{evento.num_carriles|safe }}<hr />
-        <b>Limite de velocidad:</b> {{evento.limite_velocidad|safe }}<hr />
-        <b>Condicion Vial:</b> {{evento.condicion_vial|safe }}<hr />
-        <b>Jurisdiccion Especial:</b> {{evento.jurisdiccion_especial|safe }}<hr />
-        <b>Zona en Contruccion:</b> {{evento.zona_construccion|safe }}<hr />
-        <b>Condiciones de luz:</b> {{evento.condicion_luz|safe }}<hr />
-        <b>Condiciones atmosfericas:</b> {{evento.condicion_atmosfera|safe }}<hr />
-        <b>Hora de llamada:</b> {{evento.hra_llamada|safe }}<hr />
-        <b>Hora en la escena:</b> {{evento.hra_escena|safe }}<hr />
-        <b>Hora en el hospital:</b> {{evento.hra_hospital|safe }}<hr />
-        <b>Metodo de transportacion:</b> {{evento.metodo_transportacion|safe }}<hr />
-        <b>Total de conductores alcoholizados:</b> {{evento.conductor_alcoholizado|safe }}<hr />
-        <b>Numero de lesionados:</b> {{evento.num_lesionados|safe }}<hr />
-        <b>Numero de muertes:</b> {{evento.num_muertes|safe }}<hr />
-        <b>Dispositivo de control vial:</b> {{evento.dispositivo_control_vial|safe }}<hr />
-        <b>Dispositivo en funcionamiento:</b> {{evento.dispositivo_funcionando|safe }}<hr />
+		<hr />
+		<h1>Vehículos</h1>
+		<hr /><hr />
+	{% for vehiculo in item %}
+		<h2>Núm. Vehículo: {{ vehiculo }} ||<small> Núm. Evento: {{vehiculo.num_evento}}</small></h2>
+		<a class="btn" href="{{ vehiculo.get_absolute_url }}">Ir a vehiculo</a>
+	{% endfor %}
+	 
 	{% endblock %}
-	</div>
+</div>
 </div>
 </body>
-</html>
+</html>	
 
 

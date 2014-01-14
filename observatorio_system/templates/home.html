@@ -8,11 +8,11 @@
 	<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cosultas<b class="caret"></b></a>
 		<ul class="dropdown-menu">
-			<li><a href="./delegacion_c">Delegacion</a></li>
-			<li><a href="./ciudad_c">Ciudad</a></li>
-			<li><a href="">Municipio</a></li>
-			<li><a href="">Descripcion Vial</a></li>
-			<li><a href="">Fecha</a></li>
+			<li><a href="/delegacion_c">Delegacion</a></li>
+			<li><a href="/ciudad_c">Ciudad</a></li>
+			<li><a href="/municipio_c">Municipio</a></li>
+			<li><a href="/descvial_c">Descripcion Vial</a></li>
+			<li><a href="/vehiculos_c">Vehiculos</a></li>
 			<li><a href="">Otro</a></li>
 		</ul>
 	</li>
@@ -31,7 +31,7 @@
 	</div>
 
 	{% for evento in eventos %}
-	<h2>{{ evento }}<small>{{evento.fecha_hora}}</small></h2>
+	<h2>{{ evento }} || {{ evento.delegacion }}<small>{{evento.fecha_hora}}</small></h2>
 	<a class="btn" href="{{ evento.get_absolute_url }}">Ir a evento</a>
 	{% endfor %}
 

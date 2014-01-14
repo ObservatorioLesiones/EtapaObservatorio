@@ -94,14 +94,14 @@
 	<div id="content" class="flex">
 
 	{% block content %}
-		<h1>Delegacion</h1>
+		<h1>Municipio</h1>
 		<form action="." method="GET">
 		    <label for="q">Buscar: </label>
 		   <!-- <input type="text" name="q" value="{{ query|escape }}">-->
 		    
 			<select name="q">
-			{% for Ciudad in item %}
-			    <option value="{{ Ciudad.nombre_ciudad }}">{{ Ciudad.nombre_ciudad }}</option>
+			{% for Municipio in item %}
+			    <option value="{{ Municipio.nombre_municipio }}">{{ Municipio.nombre_municipio }}</option>
 			{% endfor %}
 			</select>
 			<input type="submit" value="Buscar">

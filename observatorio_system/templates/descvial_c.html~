@@ -94,14 +94,14 @@
 	<div id="content" class="flex">
 
 	{% block content %}
-		<h1>Delegacion</h1>
+		<h1>Descripcion Vial</h1>
 		<form action="." method="GET">
 		    <label for="q">Buscar: </label>
 		   <!-- <input type="text" name="q" value="{{ query|escape }}">-->
 		    
 			<select name="q">
-			{% for Ciudad in item %}
-			    <option value="{{ Ciudad.nombre_ciudad }}">{{ Ciudad.nombre_ciudad }}</option>
+			{% for Descripcion_Vial in item %}
+			    <option value="{{ Descripcion_Vial.descripcion }}">{{ Descripcion_Vial.descripcion }}</option>
 			{% endfor %}
 			</select>
 			<input type="submit" value="Buscar">
@@ -116,10 +116,10 @@
 			<table class="table table-hover">
 			<thead> 
 			    <tr class="sucess"> 
-			    <th>Ciudad</th>
+			    <th>Descripcion Vial</th>
 			    <th>Delegacion</th>
 			    <th>Municipio</th>
-			    <th>Descripcion Vial</th>
+			    <th>Ciudad</th>
 			    <th>Jurisdiccion</th>
 			    <th>Fecha</th>
 			    </tr>
@@ -130,7 +130,7 @@
 			<td><li>{{ query|escape }}</li></td>
 				<td>{{ evento.delegacion }}</td>
 				<td>{{ evento.municipio }}</td>
-				<td>{{ evento.descripcion_vial }}</td>
+				<td>{{ evento.ciudad }}</td>
 				<td>{{ evento.jurisdiccion_especial }}</td>
 				<td>{{ evento.fecha_hora }}</td>
 				<td><a class="btn" href="{{ evento.get_absolute_url }}">Ir a evento</a></td>

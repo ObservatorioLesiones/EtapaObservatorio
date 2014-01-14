@@ -2,20 +2,20 @@ from django.db import models
 
 # Create your models here.
 
-class Ciudad(models.Model):
-	id = models.AutoField(primary_key=True)
-	nombre_ciudad=models.CharField(max_length=25)
-
-	def __unicode__(self):
-		return self.nombre_ciudad
-
 class Municipio(models.Model):
 	id=models.AutoField(primary_key=True)
 	nombre_municipio=models.CharField(max_length=25)
-	nombre_ciudad=models.ForeignKey(Ciudad)
+	
 
 	def __unicode__(self):
 		return self.nombre_municipio
+
+class Ciudad(models.Model):
+	id = models.AutoField(primary_key=True)
+	nombre_ciudad=models.CharField(max_length=25)
+	nombre_municipio=models.ForeignKey(Municipio)
+	def __unicode__(self):
+		return self.nombre_ciudad
 
 class Delegacion(models.Model):
 	id=models.AutoField(primary_key=True)
@@ -127,7 +127,7 @@ class evento(models.Model):
 		return ('observatorio.views.ver_evento',(str(self.num_evento),),{})
 	
 	def __unicode__(self):
-		return unicode(self.delegacion)
+		return unicode(self.num_evento)
 
 class marca(models.Model):
 	id=models.AutoField(primary_key=True)
@@ -169,9 +169,12 @@ class vehiculo(models.Model):
 	conductor_alcoholizado=models.BooleanField()
 	num_lesionados=models.PositiveIntegerField()
 	num_evento=models.ForeignKey(evento)
+	@models.permalink
+	def get_absolute_url(self):
+		return ('observatorio.views.ver_vehiculo',(str(self.num_vehiculo),))
 
 	def __unicode__(self):
-		return self.num_vehiculo
+		return unicode(self.num_vehiculo)
 
 class rol_persona(models.Model):
 	id=models.AutoField(primary_key=True)
@@ -230,18 +233,19 @@ class prioridad(models.Model):
 		return self.prioridad
 
 class persona(models.Model):
-
-	id_persona=models.AutoField(primary_key=True)
-	edad=models.IntegerField()
-	sexo=models.IntegerField()
+	
+	sexo_choices=((0, 'Femenino'),(1, 'Masculino'))
+	id_persona=models.AutoField(primary_key=True,blank=True)
+	edad=models.IntegerField(null=True,blank=True)
+	sexo=models.IntegerField(choices=sexo_choices,null=True, blank=True)
 	rol=models.ForeignKey(rol_persona)
 	gravedad_lesion=models.ForeignKey(gravedad_lesion)
-	fecha_mort=models.DateTimeField()
-	num_amb=models.CharField(max_length=2)
-	operador=models.CharField(max_length=50)
-	prest_serv=models.CharField(max_length=50)
+	fecha_mort=models.DateTimeField(null=True, blank=True)
+	num_amb=models.CharField(max_length=2, null=True,blank=True)
+	operador=models.CharField(max_length=50, null=True,blank=True)
+	prest_serv=models.CharField(max_length=50, null=True, blank=True)
 	num_evento=models.ForeignKey(evento)
-	num_vehiculo=models.ForeignKey(vehiculo)
+	num_vehiculo=models.ForeignKey(vehiculo, null=True,blank=True)
 	clasificacion1=models.BooleanField()
 	clasificacion2=models.BooleanField()
 	medidas_seguridad=models.ForeignKey(medidas_seguridad)
@@ -252,7 +256,7 @@ class persona(models.Model):
 	prioridad=models.ForeignKey(prioridad)
 
 	def __unicode__(self):
-		return self.persona
+		return unicode(self.id_persona)
 
 class tipo_licencia(models.Model):
 	id=models.AutoField(primary_key=True)
@@ -329,14 +333,14 @@ class conductor(models.Model):
 	conductor_alcoholizado=models.ForeignKey(conductor_alcoholizado)
 
 	def __unicode__(self):
-		return self.id_persona
+		return unicode(self.id_persona)
 	
 class pasajero(models.Model):
 	id_persona=models.OneToOneField(persona, primary_key=True)
 	posicion_persona=models.ForeignKey(posicion_persona)
 
 	def __unicode__(self):
-		return self.id_persona
+		return unicode(self.id_persona)
 
 
 class transeunte(models.Model):
@@ -354,5 +358,5 @@ class transeunte(models.Model):
 	
 
 	def __unicode__(self):
-		return self.id_persona
+		return unicode(self.id_persona)
 	
