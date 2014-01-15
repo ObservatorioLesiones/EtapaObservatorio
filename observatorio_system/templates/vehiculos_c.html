@@ -26,10 +26,10 @@
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	    });
 		
-	{% for evento in results %}
-	 var point = new google.maps.LatLng({{evento.latitud}},{{evento.longitud}});
-	 var myWindowOptions = { content:{{evento.latitud}}+","+{{evento.longitud}}};
-		var contentString = {{evento.latitud}}+","+{{evento.longitud}};
+	{% for vehiculo in item %}
+	 var point = new google.maps.LatLng({{vehiculo.evento.latitud}},{{vehiculo.evento.longitud}});
+	 var myWindowOptions = { content:{{vehiculo.evento.latitud}}+","+{{vehiculo.evento.longitud}}};
+		var contentString = {{vehiculo.evento.latitud}}+","+{{vehiculo.evento.longitud}};
 	 var marker = new google.maps.Marker(
 		{
 			position:point, 
@@ -68,11 +68,16 @@
 			        <li class="dropdown">
 					<a href="." class="dropdown-toggle" data-toggle="dropdown">Cosultas<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="./delegacion_c">Delegacion</a></li>
-						<li><a href="./ciudad_c">Ciudad</a></li>
-						<li><a href="./municipio_c">Municipio</a></li>
-						<li><a href="./descvial_c">Descripcion Vial</a></li>
-						<li><a href="">Otro</a></li>
+						<li><a href="/eventos">Eventos</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/delegacion_c">Delegacion</a></li>
+                        <li><a href="/ciudad_c">Ciudad</a></li>
+                        <li><a href="/municipio_c">Municipio</a></li>
+                        <li><a href="/descvial_c">Descripcion Vial</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/vehiculos_c">Vehiculos</a></li>
+                        <li class="divider"></li>
+                        <li><a href="">Otro</a></li>
 					</ul>
 				</li>
 			        <li class="">
@@ -95,9 +100,9 @@
 	{% block content %}
 		<hr />
 		<h1>Vehículos</h1>
-		<hr /><hr />
+		<hr /><hr /><div id=map></div> <hr /><hr />
 	{% for vehiculo in item %}
-		<h2>Núm. Vehículo: {{ vehiculo }} ||<small> Núm. Evento: {{vehiculo.num_evento}}</small></h2>
+		<h2>Núm. Vehículo: {{ vehiculo }} ||<small> Núm. Evento: {{vehiculo.evento.id}}</small></h2>
 		<a class="btn" href="{{ vehiculo.get_absolute_url }}">Ir a vehiculo</a>
 	{% endfor %}
 	 

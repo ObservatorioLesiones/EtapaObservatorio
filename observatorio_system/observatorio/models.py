@@ -17,7 +17,7 @@ class Delegacion(models.Model):
 	nombre_delegacion=models.CharField(max_length=25)
 	municipio=models.ForeignKey(Municipio)
 	def __unicode__(self):
-		return self.nombre_d
+		return self.nombre_delegacion
 
 class Condicion_Vial(models.Model):
 	condicion_vial=models.CharField(max_length=30)
@@ -79,7 +79,6 @@ class jurisdiccion_especial(models.Model):
 		return self.jurisdiccion
 
 class evento(models.Model):
-	num_evento=models.AutoField(primary_key=True)
 	delegacion=models.ForeignKey(Delegacion)
 	ciudad=models.ForeignKey(Ciudad)
 	municipio=models.ForeignKey(Municipio)
@@ -105,10 +104,10 @@ class evento(models.Model):
 	dispositivo_funcionando=models.ForeignKey(dispositivo_funcionando)
 	@models.permalink
 	def get_absolute_url(self):
-		return ('observatorio.views.ver_evento',(str(self.num_evento),),{})
+		return ('observatorio.views.ver_evento',(str(self.id),),{})
 	
 	def __unicode__(self):
-		return unicode(self.num_evento)
+		return unicode(self.id)
 
 class marca(models.Model):
 	marca=models.CharField(max_length=40)
@@ -136,7 +135,6 @@ class volcadura(models.Model):
 		return self.volcadura
 
 class vehiculo(models.Model):
-	num_vehiculo=models.AutoField(primary_key=True)
 	num_ocupantes=models.IntegerField()
 	modelo=models.ForeignKey(modelo)
 	marca=models.ForeignKey(marca)
@@ -148,10 +146,10 @@ class vehiculo(models.Model):
 	evento=models.ForeignKey(evento)
 	@models.permalink
 	def get_absolute_url(self):
-		return ('observatorio.views.ver_vehiculo',(str(self.num_vehiculo),))
+		return ('observatorio.views.ver_vehiculo',(str(self.id),))
 
 	def __unicode__(self):
-		return unicode(self.num_vehiculo)
+		return unicode(self.id)
 
 class rol_persona(models.Model):
 	rol=models.CharField(max_length=45)
@@ -208,9 +206,9 @@ class persona(models.Model):
 	rol=models.ForeignKey(rol_persona)
 	gravedad_lesion=models.ForeignKey(gravedad_lesion)
 	fecha_mort=models.DateTimeField(null=True, blank=True)
-	num_amb=models.CharField(max_length=2, null=True,blank=True)
+	num_ambulancia=models.CharField(max_length=2, null=True,blank=True)
 	operador=models.CharField(max_length=50, null=True,blank=True)
-	prest_serv=models.CharField(max_length=50, null=True, blank=True)
+	prestador_servicio=models.CharField(max_length=50, null=True, blank=True)
 	evento=models.ForeignKey(evento)
 	vehiculo=models.ForeignKey(vehiculo, null=True,blank=True)
 	clasificacion1=models.BooleanField(blank=True)

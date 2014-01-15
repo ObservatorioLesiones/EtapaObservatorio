@@ -14,6 +14,7 @@ url(r'^municipio_c/$', 'observatorio.views.municipio_c', name='municipio_c'),
 url(r'^descvial_c/$', 'observatorio.views.descvial_c', name='descvial_c'),
 url(r'^vehiculos_c/$', 'observatorio.views.vehiculos_c', name='descvial_c'),
 url(r'^vehiculo/(\d+)/$', 'observatorio.views.ver_vehiculo',  name='ver_vehiculo'),
+url(r'^eventos/$', 'observatorio.views.eventos', name='eventos'),
     # url(r'^observatorio_system/', include('observatorio_system.foo.urls')), 
 
     # Uncomment the admin/doc line below to enable admin documentation:
