@@ -35,6 +35,7 @@
 		title: "hola mundo",
 		icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png',
 		cursor: 'default',
+        animation: google.maps.Animation.DROP,
 		draggable:false
 	}
 	);
@@ -70,7 +71,7 @@
                         <li class="divider"></li>
                         <li><a href="/vehiculos_c">Vehiculos</a></li>
                         <li class="divider"></li>
-                        <li><a href="">Otro</a></li>
+                        <li><a href="/personas_c">Persona</a></li>
 					</ul>
 				</li>
 			        <li class="">
@@ -101,7 +102,10 @@
         <b>Num. de muertes:</b> {{item.num_muertos|safe }}<hr />
         <b>Conductor alcoholizado:</b> {{item.conductor_alcoholizado|safe }}<hr />
         <b>Num. de lesionados:</b> {{item.num_lesionados|safe }}<hr />
-	
+
+        {% for persona in query %}
+        Persona: {{ persona.id }}  <a class="btn" href="{{ persona.get_absolute_url }}">Ir a persona</a> <br>
+        {% endfor %}
 	{% endblock %}
 	</div>
 </div>

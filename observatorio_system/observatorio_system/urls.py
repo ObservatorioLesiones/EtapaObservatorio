@@ -12,9 +12,11 @@ urlpatterns = patterns('',
 	url(r'^ciudad_c/$', 'observatorio.views.ciudad_c', name='ciudad_c'),
 url(r'^municipio_c/$', 'observatorio.views.municipio_c', name='municipio_c'),
 url(r'^descvial_c/$', 'observatorio.views.descvial_c', name='descvial_c'),
-url(r'^vehiculos_c/$', 'observatorio.views.vehiculos_c', name='descvial_c'),
+url(r'^vehiculos_c/$', 'observatorio.views.vehiculos_c', name='vehiculos_c'),
 url(r'^vehiculo/(\d+)/$', 'observatorio.views.ver_vehiculo',  name='ver_vehiculo'),
 url(r'^eventos/$', 'observatorio.views.eventos', name='eventos'),
+url(r'^personas_c/$', 'observatorio.views.personas_c', name='personas_c'),
+url(r'^persona/(\d+)/$', 'observatorio.views.ver_persona',  name='ver_persona'),
     # url(r'^observatorio_system/', include('observatorio_system.foo.urls')), 
 
     # Uncomment the admin/doc line below to enable admin documentation:

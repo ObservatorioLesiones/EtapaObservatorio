@@ -17,35 +17,35 @@
 	{% bootstrap_javascript_tag %}
 	<script>
 	var map;
-	
-	
+
+
 	function initialize() {
 	    map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 11,
 		center: new google.maps.LatLng(32.477329,-117.089767),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	    });
-		
-	{% for evento in results %}
-	 var point = new google.maps.LatLng({{evento.latitud}},{{evento.longitud}});
-	 var myWindowOptions = { content:{{evento.latitud}}+","+{{evento.longitud}}};
-		var contentString = {{evento.latitud}}+","+{{evento.longitud}};
+
+	{% for vehiculo in item %}
+	 var point = new google.maps.LatLng({{vehiculo.evento.latitud}},{{vehiculo.evento.longitud}});
+	 var myWindowOptions = { content:{{vehiculo.evento.latitud}}+","+{{vehiculo.evento.longitud}}};
+		var contentString = {{vehiculo.evento.latitud}}+","+{{vehiculo.evento.longitud}};
 	 var marker = new google.maps.Marker(
 		{
-			position:point, 
+			position:point,
 			map:map,
 			icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png',
 			cursor: 'default',
 			draggable:false,
 			animation: google.maps.Animation.DROP,
-			html: contentString 
+			html: contentString
 		}
 		);
 
          var myInfoWindow = new google.maps.InfoWindow(myWindowOptions);
 
          google.maps.event.addListener(marker, 'click', function() {myInfoWindow.setContent(this.html);myInfoWindow.open(map,this); });
-	
+
 	{% endfor %}
 	}
 	</script>
@@ -77,13 +77,13 @@
                         <li class="divider"></li>
                         <li><a href="/vehiculos_c">Vehiculos</a></li>
                         <li class="divider"></li>
-                        <li><a href="">Otro</a></li>
+                        <li><a href="/personas_c">Persona</a></li>
 					</ul>
 				</li>
 			        <li class="">
 			             <a href="./reportes">Reportes</a>
 			        </li>
-        	        
+
            		 </ul>
 			<form class="navbar-form pull-right">
 			<input class="span2" type="text" placeholder="Usuario">
@@ -98,62 +98,16 @@
 	<div id="content" class="flex">
 
 	{% block content %}
-		<h1>Municipio</h1>
-		<form action="." method="GET">
-		    <label for="q">Buscar: </label>
-		   <!-- <input type="text" name="q" value="{{ query|escape }}">-->
-		    
-			<select name="q">
-			{% for Municipio in item %}
-			    <option value="{{ Municipio.nombre_municipio }}">{{ Municipio.nombre_municipio }}</option>
-			{% endfor %}
-			</select>
-			<input type="submit" value="Buscar">
-		  </form>
+		<hr />
+		<h1>Personas</h1>
 
-		  {% if query %}
-		    <h2>Resultados para "{{ query|escape }}":</h2>
+	{% for persona in item %}
+		<h2>Núm. Persona: {{ persona }} ||<small> Núm. Evento: {{persona.evento.id}}</small></h2>
+		<a class="btn" href="{{ persona.get_absolute_url }}">Ir a persona</a>
+	{% endfor %}
 
-		    {% if results %}
-			<hr /><hr /><center><div id=map></center></div> <hr /><hr />	
-		      <ul>
-			<table class="table table-hover">
-			<thead> 
-			    <tr class="sucess"> 
-			    <th>Ciudad</th>
-			    <th>Delegacion</th>
-			    <th>Municipio</th>
-			    <th>Descripcion Vial</th>
-			    <th>Jurisdiccion</th>
-			    <th>Fecha</th>
-			    </tr>
-			</thead> 
-		      {% for evento in results %}
-			
-			<tbody>
-			<td><li>{{ query|escape }}</li></td>
-				<td>{{ evento.delegacion }}</td>
-				<td>{{ evento.municipio }}</td>
-				<td>{{ evento.descripcion_vial }}</td>
-				<td>{{ evento.jurisdiccion_especial }}</td>
-				<td>{{ evento.fecha_hora }}</td>
-				<td><a class="btn" href="{{ evento.get_absolute_url }}">Ir a evento</a></td>
-			</tbody>
-			
-		      {% endfor %}
-		      </table>
-			
-		      </ul>
-		    {% else %}
-		      <p>Ningun evento encontrado</p>
-		    {% endif %}
-		  {% endif %}
-
-	 
 	{% endblock %}
 </div>
 </div>
 </body>
-</html>	
-
-
+</html>

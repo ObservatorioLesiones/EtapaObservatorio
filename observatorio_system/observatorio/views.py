@@ -7,6 +7,7 @@ from observatorio.models import Ciudad
 from observatorio.models import Municipio
 from observatorio.models import Descripcion_Vial
 from observatorio.models import vehiculo
+from observatorio.models import persona
 
 
 def home(request):
@@ -16,7 +17,10 @@ def eventos(request):
     return TemplateResponse(request, "eventos.html", {'eventos': evento.objects.all()})
 
 def ver_evento(request, num_evento):
-    return TemplateResponse(request, "evento.html", {'evento': evento.objects.get(id=num_evento)})
+    eventos=evento.objects.get(id=num_evento)
+    personas = eventos.persona_set.filter()
+    vehiculos=eventos.vehiculo_set.filter()
+    return TemplateResponse(request, "evento.html", {"evento":eventos,"personas":personas, "vehiculos":vehiculos})
 
 
 def delegacion_c(request):
@@ -69,9 +73,15 @@ def vehiculos_c(request):
 
 def ver_vehiculo(request, num_vehiculo):
     item = vehiculo.objects.get(id=num_vehiculo)
-   # query = item.vehiculo_set.get()
-    return TemplateResponse(request, "vehiculo.html", {'item': item})
+    query = item.persona_set.filter()
+    return TemplateResponse(request, "vehiculo.html", {'item': item, "query":query})
 
+def personas_c(request):
+    return TemplateResponse(request, "personas_c.html", {'item': persona.objects.all()})
+
+def ver_persona(request, num_persona):
+    item = persona.objects.get(id=num_persona)
+    return TemplateResponse(request, "persona.html", {'item': item})
 
 
 

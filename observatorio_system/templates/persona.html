@@ -9,7 +9,7 @@
 	<style type="text/css" media="screen">
 		.container {width:800px}
 		.navbar .container {width: 800px}
-		#map {width: 800px; height: 300px}
+		#map {width: 500px; height: 300px}
 	</style>
 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
@@ -62,7 +62,7 @@
 			        <li class="dropdown">
 					<a href="." class="dropdown-toggle" data-toggle="dropdown">Cosultas<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-                        <li><a href="/eventos">Eventos</a></li>
+						<li><a href="/eventos">Eventos</a></li>
                         <li class="divider"></li>
                         <li><a href="/delegacion_c">Delegacion</a></li>
                         <li><a href="/ciudad_c">Ciudad</a></li>
@@ -73,6 +73,7 @@
                         <li class="divider"></li>
                         <li><a href="/personas_c">Persona</a></li>
 					</ul>
+				</li>
 			        <li class="">
 			             <a href="./reportes">Reportes</a>
 			        </li>
@@ -90,41 +91,28 @@
 <div class="container">
 	<div id="content" class="flex">
 	{% block content %}
-	<h1>{{ evento.delegacion }} <small>{{ evento.fecha_hora }}</small></h1><hr /><hr />
-	<div id=map></div>
+	<hr />
+	<h1>Persona: {{ item }} ||<small>Evento: {{item.evento.id}}</small> <a class="btn" href="{{ item.evento.get_absolute_url }}">Ir a evento</a></h1>
 	<hr /><hr />
-	<b>Delegacion: </b>{{evento.delegacion|safe }}<hr />
-	<b>Ciudad: </b>{{evento.ciudad|safe }}<hr />
-	<b>Municipio:</b> {{evento.municipio|safe }}<hr />
-        <b>Descripcion Vial:</b> {{evento.descripcion_vial|safe }}<hr />
-        <b>Num. de Carriles:</b> {{evento.num_carriles|safe }}<hr />
-        <b>Limite de velocidad:</b> {{evento.limite_velocidad|safe }}<hr />
-        <b>Condicion Vial:</b> {{evento.condicion_vial|safe }}<hr />
-        <b>Jurisdiccion Especial:</b> {{evento.jurisdiccion_especial|safe }}<hr />
-        <b>Zona en Contruccion:</b> {{evento.zona_construccion|safe }}<hr />
-        <b>Condiciones de luz:</b> {{evento.condicion_luz|safe }}<hr />
-        <b>Condiciones atmosfericas:</b> {{evento.condicion_atmosfera|safe }}<hr />
-        <b>Hora de llamada:</b> {{evento.hra_llamada|safe }}<hr />
-        <b>Hora en la escena:</b> {{evento.hra_escena|safe }}<hr />
-        <b>Hora en el hospital:</b> {{evento.hra_hospital|safe }}<hr />
-        <b>Metodo de transportacion:</b> {{evento.metodo_transportacion|safe }}<hr />
-        <b>Total de conductores alcoholizados:</b> {{evento.conductor_alcoholizado|safe }}<hr />
-        <b>Numero de lesionados:</b> {{evento.num_lesionados|safe }}<hr />
-        <b>Numero de muertes:</b> {{evento.num_muertes|safe }}<hr />
-        <b>Dispositivo de control vial:</b> {{evento.dispositivo_control_vial|safe }}<hr />
-        <b>Dispositivo en funcionamiento:</b> {{evento.dispositivo_funcionando|safe }}<hr />
-        <b>Personas involucradas:</b> <hr />
-        {% for persona in personas %}
-            Persona: {{ persona.id }}  <a class="btn" href="{{ persona.get_absolute_url }}">Ir a persona</a> <br>
-        {% endfor %}
-        <hr /><b>Vehiculos involucrados:</b> <hr />
-        {% for vehiculo in vehiculos %}
-            Vehiculo: {{ vehiculo.id }}  <a class="btn" href="{{ vehiculo.get_absolute_url }}">Ir a vehiculo</a> <br>
-        {% endfor %}
+        <b>Edad: </b>{{item.edad|safe }}<hr />
+	    <b>Sexo: </b>{{item.sexo|safe }}<hr />
+        <b>Estado Civil:</b> {{item.estado_civil|safe }}<hr />
+        <b>Escolaridad:</b> {{item.escolaridad|safe }}<hr />
+        <b>Rol:</b> {{item.rol|safe }}<hr />
+        <b>Ocupación:</b> {{item.ocupacion|safe }}<hr />
+        <b>Gravedad de la lesion:</b> {{item.gravedad_lesion|safe }}<hr />
+	    <b>Muerte en la escena: </b>{{item.muerte_escena|safe }}<hr />
+	    <b>Fecha de Muerte: </b>{{item.fecha_mort|safe }}<hr />
+	    <b>Prioridad:</b> {{item.prioridad|safe }}<hr />
+        <b>Num. de ambulancia:</b> {{item.num_ambulancia|safe }}<hr />
+        <b>Operador:</b> {{item.operador|safe }}<hr />
+        <b>Prestador del servicio:</b> {{item.prestador_servicio|safe }}<hr />
+        <b>Vehiculo:</b> {{item.vehiculo|safe }}
+        <a class="btn" href="{{ item.vehiculo.get_absolute_url }}">Ir a vehiculo</a></h1><hr />
+
+
 	{% endblock %}
 	</div>
 </div>
 </body>
 </html>
-
-
