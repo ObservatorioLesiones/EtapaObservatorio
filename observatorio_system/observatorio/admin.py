@@ -15,7 +15,7 @@ from observatorio.models import zona_construccion
 from observatorio.models import condicion_atmosferica
 from observatorio.models import metodo_transporte
 from observatorio.models import jurisdiccion_especial
-
+from observatorio.models import tipo_incidente
 from observatorio.models import rol_persona
 from observatorio.models import gravedad_lesion
 from observatorio.models import medidas_seguridad
@@ -91,4 +91,5 @@ admin.site.register(direccion_inicial)
 admin.site.register(conductor)
 admin.site.register(pasajero)
 admin.site.register(transeunte)
+admin.site.register(tipo_incidente)
 

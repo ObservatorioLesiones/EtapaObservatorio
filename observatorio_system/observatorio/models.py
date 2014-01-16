@@ -94,6 +94,11 @@ class jurisdiccion_especial(models.Model):
     def __unicode__(self):
         return self.jurisdiccion
 
+class tipo_incidente(models.Model):
+    descripcion = models.CharField(max_length=45)
+
+    def __unicode__(self):
+        return self.descripcion
 
 class evento(models.Model):
     delegacion = models.ForeignKey(Delegacion)
@@ -101,6 +106,7 @@ class evento(models.Model):
     municipio = models.ForeignKey(Municipio)
     latitud = models.DecimalField(max_digits=11, decimal_places=7, blank=True, default=0)
     longitud = models.DecimalField(max_digits=11, decimal_places=7, blank=True, default=0)
+    tipo_incidente=models.ForeignKey(tipo_incidente)
     descripcion_vial = models.ForeignKey(Descripcion_Vial)
     num_carriles = models.ForeignKey(num_carriles)
     limite_velocidad = models.IntegerField()
