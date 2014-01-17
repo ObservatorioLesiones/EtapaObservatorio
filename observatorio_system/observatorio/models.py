@@ -169,6 +169,8 @@ class vehiculo(models.Model):
     marca = models.ForeignKey(marca)
     ano = models.IntegerField()
     vin = models.IntegerField()
+    camion_pasajeros=models.ForeignKey(camion_pasajeros)
+    volcadura=models.ForeignKey(volcadura)
     num_muertos = models.IntegerField()
     conductor_alcoholizado = models.BooleanField()
     num_lesionados = models.PositiveIntegerField()

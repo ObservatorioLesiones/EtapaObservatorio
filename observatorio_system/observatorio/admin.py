@@ -93,3 +93,4 @@ admin.site.register(pasajero)
 admin.site.register(transeunte)
 admin.site.register(tipo_incidente)
 
+
