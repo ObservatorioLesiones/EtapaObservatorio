@@ -114,6 +114,7 @@
         <b>Numero de muertes:</b> {{evento.num_muertes|safe }}<hr />
         <b>Dispositivo de control vial:</b> {{evento.dispositivo_control_vial|safe }}<hr />
         <b>Dispositivo en funcionamiento:</b> {{evento.dispositivo_funcionando|safe }}<hr />
+
         <b>Personas involucradas:</b> <hr />
         {% for persona in personas %}
             Persona: {{ persona.id }}  <a class="btn" href="{{ persona.get_absolute_url }}">Ir a persona</a> <br>
